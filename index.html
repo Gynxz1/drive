@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Drive">
+<meta name="theme-color" content="#11151c">
+<title>Drive</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+<div id="map"></div>
+
+<div id="top">
+  <form id="searchForm">
+    <input id="q" type="search" placeholder="Where to?" autocomplete="off" enterkeyhint="search">
+    <button type="button" id="gear" aria-label="Settings">&#9881;</button>
+  </form>
+  <ul id="results" hidden></ul>
+  <div id="turn" hidden><b id="turnDist"></b><span id="turnText"></span></div>
+  <div id="alert" hidden><b id="alertText"></b><span id="alertDist"></span></div>
+</div>
+
+<div id="bottom">
+  <div id="row">
+    <div id="speedBox">
+      <div id="speed"><b id="speedVal">0</b><small>mph</small></div>
+      <div id="limit" hidden><small>LIMIT</small><b id="limitVal"></b></div>
+    </div>
+    <div id="fabs">
+      <button id="recenter" aria-label="Re-centre on me">&#9678;</button>
+      <button id="pinPolice" aria-label="Report police here">&#128659;<small>Police</small></button>
+      <button id="pinDamage" aria-label="Report damaged road here">&#9888;&#65039;<small>Road</small></button>
+    </div>
+  </div>
+  <div id="sheet" hidden></div>
+</div>
+
+<div id="toast" hidden></div>
+
+<div id="start">
+  <h1>Drive</h1>
+  <p>Keep this page open and on screen while driving. Location only works while it is visible.</p>
+  <button id="startBtn">Start drive</button>
+  <p id="startNote"></p>
+</div>
+
+<dialog id="settings">
+  <form method="dialog" id="settingsForm">
+    <h2>Settings</h2>
+    <label>TomTom API key
+      <input id="setKey" type="password" autocomplete="off" placeholder="Needed for traffic and speed limits">
+    </label>
+    <label>Overspeed warning (mph over the limit)
+      <input id="setMargin" type="number" min="0" max="30" inputmode="numeric">
+    </label>
+    <label class="check"><input id="setVoice" type="checkbox"> Spoken alerts</label>
+    <label>"Radios off" Shortcut name
+      <input id="setShortcut" type="text" autocomplete="off">
+    </label>
+    <a id="runShortcut" href="#">Run that Shortcut now</a>
+    <div class="btns">
+      <button type="button" id="clearPins">Delete my pins</button>
+      <button id="saveSettings" value="save">Save</button>
+    </div>
+    <p class="fine">Map and cameras: &copy; OpenStreetMap contributors (plate cameras via DeFlock mappers). Camera data is crowdsourced and incomplete.</p>
+  </form>
+</dialog>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js?v=3"></script>
+</body>
+</html>
